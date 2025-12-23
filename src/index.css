@@ -66,3 +66,23 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+ul {
+  font-family: "Courier New", Courier, monospace;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+li {
+  background: #7777774b;
+  padding: 6px;
+  border-radius: 8px;
+  position: relative;
+}
+
+span {
+  position: absolute;
+  right: 2%;
+}

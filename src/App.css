@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 } */
+
+ul {
+  font-family: "Courier New", Courier, monospace;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4;
+}
+
+li {
+  background: "#7777774b";
+  padding: 4px;
+  border-radius: 8px;
+}

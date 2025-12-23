@@ -1,5 +1,11 @@
+import TodoList from "./Todos/TodoList";
+import "./index.css";
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <TodoList />
+    </>
+  );
 };
 
 export default App;

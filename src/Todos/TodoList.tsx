@@ -1,37 +1,39 @@
-import { useQuery } from "@tanstack/react-query";
-import apiClient from "./service/apiClient";
-
-interface Todo {
-  userId: string;
-  id: number;
-  title: string;
-  completed: boolean;
-}
+import { useState } from "react";
+import useTodo from "./hooks/useTodo";
 
 const TodoList = () => {
-  const {
-    data: todos,
-    error,
-    isLoading,
-  } = useQuery<Todo[]>({
-    queryKey: ["todos"],
-    queryFn: () => apiClient.get("/todos").then((res) => res.data),
-    staleTime: 1000 * 60 * 1,
-    gcTime: 1000 * 60 * 1,
-  });
+  const [page, setPage] = useState<number>(1);
+  const pageSize = 10;
+  const { data: todos, error, isLoading } = useTodo(page, pageSize);
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>Loadading ...</p>;
 
   return (
     <>
       <ul>
+        <h1>Page {page}</h1>
         {todos?.map((todo) => (
           <li key={todo.id}>
             {todo.title}
-            <span>{todo.completed ? 'Completed' : 'Not Completed'}</span>
+            <span>{todo.completed ? "Completed" : "Not Completed"}</span>
           </li>
         ))}
       </ul>
+      <button
+        onClick={() => {
+          setPage(page - 1);
+        }}
+        disabled={page < 2}
+      >
+        Previous
+      </button>
+      <button
+        onClick={() => {
+          setPage(page + 1);
+        }}
+      >
+        Next
+      </button>
     </>
   );
 };

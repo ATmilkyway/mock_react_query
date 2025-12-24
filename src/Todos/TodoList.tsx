@@ -1,5 +1,5 @@
-import { useState } from "react";
 import useTodo from "./hooks/useTodo";
+import TodoForm from "./TodoForm";
 
 const TodoList = () => {
  
@@ -10,6 +10,7 @@ const TodoList = () => {
 
   return (
     <>
+    <TodoForm/>
       <ul>
         <h1>Page {fetchNextPage.length}</h1>
           {data?.pages.map(page=>page.map(todo=><li key={todo.id}>{todo.title}</li>))}
